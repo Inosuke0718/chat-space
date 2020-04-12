@@ -193,6 +193,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
+  devise
   font-awesome-sass
   haml-rails
   jbuilder (~> 2.5)
