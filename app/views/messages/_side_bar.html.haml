@@ -4,16 +4,19 @@
       = current_user.name
     .side-bar__header--edit
       .side-bar__header--edit-pen
-        = icon('far', 'edit')
+        = link_to new_group_path do
+          = icon('far', 'edit')
       .side-bar__header--edit-gear
         = link_to edit_user_path(current_user) do
           = icon('fas', 'cog') 
         
   .side-bar__group    
-    .side-bar__group--name  
-      techchamp
-    .side-bar__group--message
-      there is no massage   
+    - current_user.groups.each do |group|
+      .side-bar__group--name 
+        = link_to '#' do
+          = group.name
+      .side-bar__group--message
+        there is no massage   
 
    
 
