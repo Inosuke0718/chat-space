@@ -10,29 +10,38 @@
   .main-chat__message
     .main-chat__message--contents
       .main-chat__message--contents-name
-        jorge
+        = @message.user.name
       .main-chat__message--contents-date
-        2020/12/12(Wed) 
-      .main-chat__message--contents-time
-        17:00:00
+        = @message.created_at.strftime("%Y年%m月%d日 %H時%M分")
+      -# .main-chat__message--contents-time
+      -#   17:00:00
     .main-chat__message--tweet
-      Ohayou
+      - if @message.content.present?
+        %p.lower-message__content
+          = @message.content
+        = image_tag @message.image.url, class: 'lower-message__image' if message.image.present?
 
-    .main-chat__message--contents
-      .main-chat__message--contents-name
-        Manuel
-      .main-chat__message--contents-date
-        2020/12/12(Wed) 
-      .main-chat__message--contents-time
-        17:30:00
-    .main-chat__message--tweet
-      Konnichiwa
+    -# .main-chat__message--contents
+    -#   .main-chat__message--contents-name
+    -#     Manuel
+    -#   .main-chat__message--contents-date
+    -#     2020/12/12(Wed) 
+    -#   .main-chat__message--contents-time
+    -#     17:30:00
+    -# .main-chat__message--tweet
+    -#   Konnichiwa
 
   .main-chat__footer
     .main-chat__footer--postform
-      %input.main-chat__footer--postform-msg{name: "msg", placeholder: "type a message", type: "text", value: ""}/
-      %label{class: "input-box__image"}
-        = icon('fas', 'image')
-        %input{type: "file", class: "input-box__selection"}
-    
-    %input.main-chat__footer--sendbtn{name: "send", placeholder: "", type: "submit", value: "Send"}/
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: main-chat__footer--postform-msg, placeholder: 'type a message'
+        -# %input.main-chat__footer--postform-msg{name: "msg", placeholder: "type a message", type: "text", value: ""}/
+
+        = f.label :image, class: 'form__mask__image' do
+          -# %label{class: "input-box__image"}
+          = icon('fas', 'image')
+          -# %input{type: "file", class: "input-box__selection"}
+          = f.file_field :image, class: 'input-box__selection'
+      
+      -# %input.main-chat__footer--sendbtn{name: "send", placeholder: "", type: "submit", value: "Send"}/
+      = f.submit 'Send', class: 'main-chat__footer--sendbtn'
