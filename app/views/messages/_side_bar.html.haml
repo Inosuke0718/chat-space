@@ -10,13 +10,14 @@
         = link_to edit_user_path(current_user) do
           = icon('fas', 'cog') 
         
-  .side-bar__group    
-    - current_user.groups.each do |group|
+  .side-bar__group 
+    - current_user.groups.each do |inoue|
       .side-bar__group--name 
-        = link_to group_messages_path(group) do
-          = group.name
+        = link_to group_messages_path(inoue) do
+          = inoue.name
+          -# = inoue.created_at
       .side-bar__group--message
-        there is no massage   
+        = inoue.show_last_message 
 
    
 

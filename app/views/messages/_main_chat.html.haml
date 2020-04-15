@@ -1,47 +1,27 @@
 .main-chat
   .main-chat__header
     .main-chat__header--group
-      test
+      =  @group.name
+      -# = current_user.name
+      
       .main-chat__header--group-member
-        Member:test
+        Members:&nbsp
+        - @group.users.each do |user|
+          .member
+            = user.name
     .main-chat__header--edit
-      = link_to "Edit", "#" 
+      = link_to edit_group_path(@group)  do
+        Edit
+        -# ＠Groupって中身何？、URIパターンでかけんの？
 
-  .main-chat__message
-    .main-chat__message--contents
-      .main-chat__message--contents-name
-        = @message.user.name
-      .main-chat__message--contents-date
-        = @message.created_at.strftime("%Y年%m月%d日 %H時%M分")
-      -# .main-chat__message--contents-time
-      -#   17:00:00
-    .main-chat__message--tweet
-      - if @message.content.present?
-        %p.lower-message__content
-          = @message.content
-        = image_tag @message.image.url, class: 'lower-message__image' if message.image.present?
-
-    -# .main-chat__message--contents
-    -#   .main-chat__message--contents-name
-    -#     Manuel
-    -#   .main-chat__message--contents-date
-    -#     2020/12/12(Wed) 
-    -#   .main-chat__message--contents-time
-    -#     17:30:00
-    -# .main-chat__message--tweet
-    -#   Konnichiwa
+  .messages
+    = render @messages
 
   .main-chat__footer
-    .main-chat__footer--postform
-      = form_for [@group, @message] do |f|
-        = f.text_field :content, class: main-chat__footer--postform-msg, placeholder: 'type a message'
-        -# %input.main-chat__footer--postform-msg{name: "msg", placeholder: "type a message", type: "text", value: ""}/
-
-        = f.label :image, class: 'form__mask__image' do
-          -# %label{class: "input-box__image"}
-          = icon('fas', 'image')
-          -# %input{type: "file", class: "input-box__selection"}
-          = f.file_field :image, class: 'input-box__selection'
-      
-      -# %input.main-chat__footer--sendbtn{name: "send", placeholder: "", type: "submit", value: "Send"}/
+    -# .main-chat__footer--postform
+    = form_for [@group, @message] do |f|
+      = f.text_field :content, class: 'main-chat__footer--postform-msg', placeholder: 'type a message'
+      = f.label :image, class: 'input-box__image' do
+        = icon('fas', 'image')
+        = f.file_field :image, class: 'input-box__selection'
       = f.submit 'Send', class: 'main-chat__footer--sendbtn'

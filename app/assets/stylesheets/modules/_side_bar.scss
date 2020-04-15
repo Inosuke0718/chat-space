@@ -4,6 +4,7 @@
   background-color: #2f3e51;
   color: #ffffff;
   font-weight: bold;
+  
 
   &__header{
     width: 300px;
@@ -12,6 +13,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    // position: fixed;
 
     &--name{
       width: 200px;
@@ -45,7 +47,9 @@
 
   &__group{
     width: 300px;
-    height: calc(120px + 15px + 5px + 11px + 40px);
+    height: 100vh;
+    // height: calc(120px + 15px + 5px + 11px + 40px);
+    
 
     &--name{
       height: 35px;

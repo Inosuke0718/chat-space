@@ -1,0 +1,35 @@
+.main-chat__message{
+  width: 100%;
+  // height: calc(100vh - 190px);
+  padding-left: 40px;
+
+  &--contents{
+    height: calc(35px + +16px + 12px);
+    display: flex;
+    
+    &-name{
+      color: #333333;
+      font-size: 16px; 
+      padding-top: 35px;
+    }
+
+    &-date{
+      color: #999999;
+      font-size: 12px; 
+      padding-top: 35px;
+      padding-left: 5px;
+    }
+
+    &-time{
+      color: #999999;
+      font-size: 12px; 
+      padding-top: 35px;
+      padding-left: 5px;
+    }
+  }
+  
+  &--tweet{
+    color: #434A54;
+    font-size: 14px;
+  }
+}
