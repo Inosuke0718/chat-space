@@ -9,6 +9,8 @@
         - @group.users.each do |user|
           .member
             = user.name
+            &nbsp;&nbsp;
+            
     .main-chat__header--edit
       = link_to edit_group_path(@group)  do
         Edit
