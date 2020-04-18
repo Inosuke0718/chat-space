@@ -4,17 +4,13 @@ class MessagesController < ApplicationController
 
   def index
     @message = Message.new
-    # なぜ必要なのか
     @messages =  @group.messages.includes(:user)
-    #  binding.pry
   end
 
   def create
     @message = @group.messages.new(message_params)
     if @message.save
-      # binding.pry
       respond_to do |format|
-        # binding.pry
         format.json
       end
     else
