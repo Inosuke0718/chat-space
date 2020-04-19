@@ -2,25 +2,21 @@
   .main-chat__header
     .main-chat__header--group
       =  @group.name
-      -# = current_user.name
       
       .main-chat__header--group-member
         Members:&nbsp
         - @group.users.each do |user|
           .member
-            = user.name
-            &nbsp;&nbsp;
+            = user.name 
             
     .main-chat__header--edit
       = link_to edit_group_path(@group)  do
         Edit
-        -# ＠Groupって中身何？、URIパターンでかけんの？
 
   .messages
     = render @messages
 
   .main-chat__footer
-    -# .main-chat__footer--postform
     = form_for [@group, @message] do |f|
       = f.text_field :content, class: 'main-chat__footer--postform-msg', placeholder: 'type a message'
       = f.label :image, class: 'input-box__image' do
