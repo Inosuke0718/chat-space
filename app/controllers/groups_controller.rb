@@ -15,7 +15,6 @@ class GroupsController < ApplicationController
       redirect_to root_path, notice: 'グループを作成しました'
     else
       render :new
-      # renderを使用することで、インスタンスへんすう@groupが上書きされない
     end
   end
 

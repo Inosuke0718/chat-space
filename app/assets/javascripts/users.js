@@ -18,11 +18,23 @@ $(function() {
 
   function addDeletedUser(userName, userId) {
     var html = `<div class="chat-group-user clearfix" id="${userId}">
-                  <p class="chat-group-user__name">${userName}</p>
+                  <p class="chat-group-user__name">
+                  ${userName}</p>
                   <div class="user-search-delete chat-group-user__btn chat-group-user__btn--delete" data-user-id="${userId}" data-user-name="${userName}">削除</div>
                 </div>`     
+
     $(".js-add-user").append(html);
   }
+
+  function addMember(userId) {
+    let html = `<input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />`;
+    $(`#${userId}`).append(html);
+    // 上記記述でどうして、データベースのデータが更新されるのかがわからない。
+    // またユーザーを削除した際にどのようにデータベースに更新を欠けているのかわからない
+
+    console.log($(`#${userId}`))
+  }
+  // メンバー
 
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
@@ -56,9 +68,9 @@ $(function() {
   $(document).on("click", ".chat-group-user__btn--add", function() {
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
-    // なぜconstなのか
     $(this).parent().remove();
     addDeletedUser(userName, userId);
+    addMember(userId);
   });
 
   $(document).on("click", ".chat-group-user__btn--delete", function() {
