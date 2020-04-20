@@ -7,7 +7,6 @@ $(function() {
                 </div>`       
     $("#user-search-result").append(html);
   } 
-  // なぜ同じ海藻のUserーserchーresultに入れるのか？
 
   function noUser() {
     var html = `<div class="chat-group-user clearfix">
@@ -29,12 +28,9 @@ $(function() {
   function addMember(userId) {
     let html = `<input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />`;
     $(`#${userId}`).append(html);
-    // 上記記述でどうして、データベースのデータが更新されるのかがわからない。
-    // またユーザーを削除した際にどのようにデータベースに更新を欠けているのかわからない
 
     console.log($(`#${userId}`))
   }
-  // メンバー
 
   $("#user-search-field").on("keyup", function() {
     var input = $("#user-search-field").val();
